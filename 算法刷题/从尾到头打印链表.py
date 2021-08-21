@@ -3,20 +3,22 @@
 
 '''
 
+# Definition for singly-linked list.
+from typing import List
 
-# -*- coding:utf-8 -*-
+
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
 class Solution:
-    # 返回从尾部到头部的列表值序列，例如[1,2,3]
-    def printListFromTailToHead(self, listNode):
-        # write code here
-        if not listNode:
+    def reversePrint(self, head: ListNode) -> List[int]:
+        if not head:
             return []
-        curnode=listNode
-        temp=[]
-        while curnode!=None:
-            temp.append(curnode.val)
-            curnode=curnode.next
+        curnode=head
         res=[]
-        for i in range(len(temp)-1,-1,-1):
-            res.append(temp[i])
-        return res
+        while curnode!=None:
+            res.append(curnode.val)
+            curnode=curnode.next
+        return res[::-1]
