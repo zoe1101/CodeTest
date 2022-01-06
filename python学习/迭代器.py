@@ -4,6 +4,17 @@
 迭代器对象从集合的第一个元素开始访问，直到所有的元素被访问完结束。迭代器只能往前不会后退。
 迭代器有两个基本的方法：iter() 和 next()。
 字符串，列表或元组对象都可用于创建迭代器：
+
+可以直接作用于for循环的数据类型有以下几种：
+一类是集合数据类型，如list、tuple、dict、set、str等；
+一类是generator，包括生成器和带yield的generator function。
+这些可以直接作用于for循环的对象统称为可迭代对象：Iterable。
+可以使用isinstance()判断一个对象是否是Iterable对象.
+可以被next()函数调用并不断返回下一个值的对象称为迭代器：Iterator。
+
+生成器都是Iterator对象，但list、dict、str虽然是Iterable，却不是Iterator。
+把list、dict、str等Iterable变成Iterator可以使用iter()函数
+
 '''
 import sys
 
