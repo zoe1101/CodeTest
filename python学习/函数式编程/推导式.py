@@ -5,7 +5,7 @@
 '''
 
 # 列表推导式
-print( [i for i in range(30) if i % 3 == 0])
+print([i for i in range(30) if i % 3 == 0])
 
 # 字典推导式
 mcase = {'a': 10, 'b': 34, 'A': 7, 'Z': 3}
