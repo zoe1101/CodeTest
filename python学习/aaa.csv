@@ -1,0 +1,5 @@
+-e text1\ntext2 
+-e text1\ntext2 
+text1\ntext2 
+text1\r\ntext2 
+text1\ntext2 
