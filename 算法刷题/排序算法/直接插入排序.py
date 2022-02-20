@@ -13,8 +13,9 @@ def insert_sort(array):
             if array[j-1]>array[j]:
                 array[j],array[j-1] = array[j-1],array[j]
     return array
-#测试
-data_test=[10,23,1,53,11,54,16,21,65,32,35,31]
-sorted_list = insert_sort(data_test)
-print(sorted_list)
+
+if __name__ == '__main__':
+    data_test=[10,23,1,53,11,54,16,21,65,32,35,31]
+    sorted_list = insert_sort(data_test)
+    print(sorted_list)
 

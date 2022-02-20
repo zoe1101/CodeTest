@@ -9,6 +9,10 @@ class Tree(object):
     def __init__(self):
         self._root = None
 
+    def max_depth(self,node):
+        '''最大深度'''
+        return 1+max(self.max_depth(node.left),self.max_depth(node.right)) if node else 0
+
     def add(self, item):
         node=TreeNode(item)
         if self._root is None:

@@ -11,13 +11,13 @@
 '''
 def bubble_sort(array):
     n=len(array)
-    for i in range(n):
-        for j in range(1,n-i):
-            if array[j-1]>array[j]:
-                array[j], array[j-1] = array[j-1], array[j]
+    for i in range(n-1):
+        for j in range(n-1-i):
+            if array[j]>array[j+1]:
+                array[j], array[j+1] = array[j+1], array[j]
     return array
 
-#测试
-data_test=[10,23,1,53,11,54,16,21,65,32,35,31]
-sorted_list = bubble_sort(data_test)
-print(sorted_list)
+if __name__ == '__main__':
+    data_test=[10,23,1,53,11,54,16,21,65,32,35,31]
+    sorted_list = bubble_sort(data_test)
+    print(sorted_list)
