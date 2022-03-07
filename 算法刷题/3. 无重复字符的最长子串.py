@@ -13,14 +13,16 @@
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        dic={}
-        res=tmp=0
-        for j in range(len(s)):
-            i=dic.get(s[j],-1)  ##获取索引 i  用于指代当前子串第一个字符的位置
-            dic[s[j]]=j # 更新哈希表
-            tmp=tmp+1 if tmp<j-i else j-i   ## dp[j - 1] -> dp[j]
-            res=max(tmp,res)  #max(dp[j - 1], dp[j])
+        k, res, c_dict = -1, 0, {}
+        for i, c in enumerate(s):
+            if c in c_dict and c_dict[c] > k:  # 字符c在字典中 且 上次出现的下标大于当前长度的起始下标
+                k = c_dict[c]
+                c_dict[c] = i
+            else:
+                c_dict[c] = i
+                res = max(res, i-k)
         return res
+
     def lengthOfLongestSubstring2(self, s: str) -> int:
         '''滑动窗口'''
         if not s or len(s)==0:

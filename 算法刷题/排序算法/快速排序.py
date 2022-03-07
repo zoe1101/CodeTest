@@ -1,16 +1,20 @@
 '''
 随意选择一个数字作为基准，比基准数字大的在右，比基准数字小的在左。
 '''
+import random
+
 
 def quick_sort(array,start,end):
     if start>=end:
         return array
-    standard=array[start]  # 基准元素
+    pivot_idx = random.randint(start, end)  # 随机选择pivot基准元素
+    array[start], array[pivot_idx] = array[pivot_idx], array[start]  # pivot放置到最左边
+    pivot=array[start]
     left,right=start,end
     while left<right:
-        while right>left and array[right]>=standard:
+        while right>left and array[right]>pivot:
             right-=1
-        while right>left and array[left]<=standard:
+        while right>left and array[left]<=pivot:
             left+=1
         if left<right:
             array[left],array[right]=array[right],array[left]

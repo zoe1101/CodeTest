@@ -13,6 +13,18 @@ from typing import List
 
 
 class Solution:
+    def maxSubArray1(self, nums: List[int]) -> int:
+        n=len(nums)
+        if n==0:
+            return 0
+        res=nums[0]
+        cursum=nums[0]
+        for i in range(1,n):
+            cursum=cursum+nums[i] if cursum>0 else nums[i]
+            res=max(res,cursum)
+        return res
+
+
     def maxSubArray(self, nums: List[int]) -> int:
         for i in range(1, len(nums)):
             nums[i]= nums[i] + max(nums[i-1], 0)
