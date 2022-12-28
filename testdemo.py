@@ -1,14 +1,8 @@
-def func(N):
-    def func1(N):
-        if N < 1:
-            return
-        if N <= 2:
-            return N
-        return func1(N - 1) ** 2 + func1(N - 2) ** 2
-    res=[]
-    for i in range(1,N+1):
-        res.append(func1(i))
-    return res
+import asyncio
 
 
-print(func(5))
+async def ticker(delay, to):
+	"""Yield numbers from 0 to *to* every *delay* seconds."""
+	for i in range(to):
+		yield i
+        await asyncio.sleep(delay)
