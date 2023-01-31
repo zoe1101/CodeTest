@@ -259,7 +259,7 @@ class MetaData(InfoBase):
 def main():
     import argparse
     parser = argparse.ArgumentParser(description='saz file parser')
-    parser.add_argument('filename', help='saz file name', default='test.saz')
+    parser.add_argument('-filename', help='saz file name', default=r'..\..\data\test.saz')
     args = parser.parse_args()
 
     sazfile = SazFile(args.filename)
@@ -284,7 +284,15 @@ def main():
             dhttps_handshake_time += session.https_handshake_time
             dgateway_time += session.gateway_time
     print(
-        "{:8},{:8},{:8},{:8},{:8},{:8},{:8},{:8},{:8},{:8},{:8},{:8},{:8},{:8}".format(
+        """
+        session_num:{:<8},static_count:{:<8},
+        server_time:{:<8},dserver_time:{:<8},
+        download_time:{:<8},ddownload_time:{:<8},
+        dns_time:{:<8},ddns_time:{:<8},
+        tcp_connec_time:{:8},dtcp_connec_time:{:<8},
+        https_handshake_time:{:<8},dhttps_handshake_time:{:<8},
+        gateway_time:{:<8},dgateway_time:{:<8}
+        """.format(
             sazfile.session_num,
             static_count,
             round(server_time, 2),

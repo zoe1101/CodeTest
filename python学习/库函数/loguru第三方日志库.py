@@ -15,7 +15,7 @@ class Log():
             if not os.path.exists(log_path):
                 os.mkdir(log_path)
             # 每隔一段时间创建文件
-            self.my_logger.add(os.path.join(log_path, 'runtime_{time}.log'), encoding='utf-8', retention=retention)
+            self.my_logger.add(os.path.join(log_path, 'runtime_{time}.logs'), encoding='utf-8', retention=retention)
 
     def info(self, content):
         self.my_logger.info(content)

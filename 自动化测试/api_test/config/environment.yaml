@@ -1,0 +1,4 @@
+default: postman_host
+testing_studio:
+  postman_host: https://postman-echo.com
+  zhihu_host: https://www.zhixue.com

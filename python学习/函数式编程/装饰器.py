@@ -12,7 +12,7 @@ def log(func):
 def now():
     print('2015-3-25')
 
-now() # 等同于 now=log(now)
+now() # 等同于 now=logs(now)
 
 
 # 带参数的装饰器

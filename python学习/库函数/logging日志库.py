@@ -16,7 +16,7 @@ class Log(object):
 
     def __init__(self):
         # 文件的命名
-        self.logname = os.path.join(log_path, '%s.log' % time.strftime('%Y_%m_%d'))
+        self.logname = os.path.join(log_path, '%s.logs' % time.strftime('%Y_%m_%d'))
         self.logger = logging.getLogger()
         self.logger.setLevel(logging.DEBUG)
         # 日志输出格式

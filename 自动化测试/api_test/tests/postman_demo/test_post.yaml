@@ -1,0 +1,13 @@
+
+tests:
+  test_post:
+    # 是否执行该案例
+    is_run: True
+    description: "post"
+    method: post
+    route: /post
+    RequestData:
+      json:
+        name: "post接口测试"
+    Validate:
+      - eq: [$.data.name, post接口测试]
