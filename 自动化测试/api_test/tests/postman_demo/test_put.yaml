@@ -1,0 +1,13 @@
+
+tests:
+  test_put:
+    # 是否执行该案例
+    is_run: True
+    description: "put"
+    method: put
+    route: /put
+    RequestData:
+      params:
+        data: "put接口测试"
+    Validate:
+      - eq: [$.args.data, put接口测试]

@@ -1,0 +1,18 @@
+config: # 公共信息
+  env: postman_echo
+
+tests:
+  test_basic-auth:
+    # 是否执行该案例
+    is_run: True
+    description: "basic-auth"
+    method: get
+    route: /basic-auth
+    headers:
+      Authorization: Basic cG9zdG1hbjpwYXNzd29yZA==
+    RequestData:
+      data:
+        Username: postman
+        Password: password
+    Validate:
+      - eq: [$.authenticated, true]

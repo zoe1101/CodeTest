@@ -1,0 +1,16 @@
+config: # 公共信息
+  env: postman_echo
+
+tests:
+  test_headers:
+    # 是否执行该案例
+    is_run: True
+    description: "headers"
+    method: get
+    route: /headers
+    headers:
+      my-sample-header: Lorem ipsum dolor sit amet
+    RequestData:
+      params:
+    Validate:
+      - eq: [$.headers.my-sample-header, Lorem ipsum dolor sit amet]

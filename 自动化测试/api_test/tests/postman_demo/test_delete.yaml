@@ -1,0 +1,15 @@
+config: # 公共信息
+  env: postman_echo
+
+tests:
+  test_delete:
+    # 是否执行该案例
+    is_run: True
+    description: "delete"
+    method: delete
+    route: /delete
+    RequestData:
+      params:
+        id: 1
+    Validate:
+      - eq: [status_code, 200]

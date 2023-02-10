@@ -65,17 +65,15 @@ class HttpRequest(Session):
         try:
             logger.info("request data: {}".format(kwargs))
             method = kwargs.get('method', 'GET').upper()
-            if kwargs.get('host'):  # 对于个别host不一致的，在案例中设置自己的host
-                host = kwargs.get('host')
-            else:
-                host = cache.get('baseurl')
-            url = self.check_url(host, kwargs.get('route'))
+            # 对于个别host不一致的，在案例中设置自己的host
+            url = self.check_url(kwargs.get('host', cache.get('host')), kwargs.get('route'))
             logger.info("Request Url: {}".format(url))
             logger.info("Request Method: {}".format(method))
             kwargs_str = dumps(kwargs)
             if is_sub := findalls(kwargs_str):
                 kwargs = loads(sub_var(is_sub, kwargs_str))
             logger.info("Request Data: {}".format(kwargs))
+
             request_data = HttpRequest.mergedict(kwargs.get('RequestData'),
                                                  headers=cache.get('headers'),
                                                  timeout=cache.get('timeout'))

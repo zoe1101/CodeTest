@@ -20,8 +20,9 @@ class CachePool(UserDict):
             如果关键字不在字典中，则使用默认值插入关键字。
             如果key在字典中，则返回key的值，否则返回默认值。
         '''
-        # if value:
-        #     self.data[key] = value
+    def new_set(self, key: t.Text, value: t.Any = None) -> None:
+        if value:
+            self.data[key] = value
     def has(self, key: t.Text) -> bool:
         return key in self.data
 

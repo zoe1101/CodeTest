@@ -11,7 +11,7 @@ def run_main():
     """主函数"""
     cmd_all = (
         # "source env/bin/activate",
-        "pytest --html=report.html --self-contained-html --alluredir allure-results --clean-alluredir --cache-clear",
+        "pytest tests/postman_demo/ --html=report.html --self-contained-html --alluredir allure-results --clean-alluredir --cache-clear",
         # "cp environment.properties allure-results",
         # "allure generate allure-results -c -o allure-report",
         # "allure open allure-report",
