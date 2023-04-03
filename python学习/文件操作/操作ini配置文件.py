@@ -81,7 +81,7 @@ if __name__ == '__main__':
     print(INIHelper.read_from_ini(file_path, 'connect', 'host1'))  # 获取不存在的数据项
     # None
 
-    save_path = 'config1.ini'
+    save_path = '../../data/config_w.ini'
     # data = INIHelper.read_from_ini(file_path)
     # data['user1'] = [('name', 'www'), ('age', '18')]
     data = dict()

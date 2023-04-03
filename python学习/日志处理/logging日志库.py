@@ -6,7 +6,7 @@ import os
 日志级别：NOTSET（0）、DEBUG（10）、INFO（20）、WARNING（30）、ERROR（40）、CRITICAL（50）
 '''
 
-log_path = os.path.join(os.getcwd(), 'logs')  # log_path是存放日志的路径
+log_path = os.path.join(os.getcwd(), '../库函数/logs')  # log_path是存放日志的路径
 # 如果不存在这个logs文件夹，就自动创建一个
 if not os.path.exists(log_path):
     os.mkdir(log_path)

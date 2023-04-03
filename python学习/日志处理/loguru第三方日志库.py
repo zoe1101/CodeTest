@@ -1,7 +1,7 @@
 import os
 from loguru import logger
 
-log_path = os.path.join(os.getcwd(), 'logs')
+log_path = os.path.join(os.getcwd(), '../库函数/logs')
 retention = '3 days'
 
 
