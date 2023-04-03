@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<p_request>
+    <head>
+        <core_no>N777751</core_no>
+        <out_no>on_2020111101</out_no>
+        <version>1.0</version>
+        <pay_channel>Z0003</pay_channel>
+        <pid>00496</pid>
+    </head>
+    <type>1</type>
+</p_request>
