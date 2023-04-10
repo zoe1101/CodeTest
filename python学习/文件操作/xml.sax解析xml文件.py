@@ -29,7 +29,7 @@ endElement(name) 方法：遇到XML结束标签时调用。
 import xml.sax
 
 
-class xmlHandler(xml.sax.ContentHandler):
+class XmlHandler(xml.sax.ContentHandler):
     def __init__(self):
         self.CurrentData = ""
         self.type = ""
@@ -86,7 +86,7 @@ if (__name__ == "__main__"):
     parser.setFeature(xml.sax.handler.feature_namespaces, 0)
 
     # 重写 ContextHandler
-    Handler = xmlHandler()
+    Handler = XmlHandler()
     parser.setContentHandler(Handler)
 
     parser.parse("../../data/testxml.xml")
