@@ -7,4 +7,7 @@
     <plus a="complex">
         element as well
     </plus>
+    <data>
+        <field NAME="tagname">测试</field>
+    </data>
 </mydocument>
