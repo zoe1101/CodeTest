@@ -1,0 +1,18 @@
+config:
+  env: postman_echo
+tests:
+  test_basic-auth:
+    RequestData:
+      data:
+        Password: password
+        Username: postman
+    Validate:
+    - eq:
+      - $.authenticated
+      - true
+    description: basic-auth
+    headers:
+      Authorization: Basic cG9zdG1hbjpwYXNzd29yZA==
+    is_run: true
+    method: get
+    route: /basic-auth
