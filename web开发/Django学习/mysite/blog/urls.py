@@ -3,8 +3,8 @@ from . import views
 
 '''类视图方式'''
 urlpatterns = [
-    path('list/', views.BlogListView.as_view(),name='list'),
-    path('detail/<int:blog_id>/', views.BlogDetailView.as_view(),name='detail'),
+    path('list/', views.BlogListView.as_view(), name='list'),
+    path('detail/<int:blog_id>/', views.BlogDetailView.as_view(), name='detail'),
 ]
 
 '''函数视图方式'''
