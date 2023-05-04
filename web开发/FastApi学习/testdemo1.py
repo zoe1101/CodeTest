@@ -1,9 +1,10 @@
+# coding: utf-8
 from pydantic import BaseModel
 from datetime import date
 
 
-# °Ñ±äÁ¿ÉùÃ÷Îª×Ö·û´®
-# ÔÚº¯ÊıÄÚ²¿»ñµÃ±à¼­Æ÷Ö§³Ö
+# æŠŠå˜é‡å£°æ˜ä¸ºå­—ç¬¦ä¸²
+# åœ¨å‡½æ•°å†…éƒ¨è·å¾—ç¼–è¾‘å™¨æ”¯æŒ
 def main(user_id: str):
     return user_id
 
@@ -14,5 +15,11 @@ class User(BaseModel):
     joined: date
 
 
-my_user: User = User(id=3, name="John Doe", joined="2018-07-19")
+first_user: User = User(id=3, name="John Doe", joined="2018-07-19")
+second_user_data = {
+    "id": 4,
+    "name": "Mary",
+    "joined": "2018-11-30",
+}
 
+second_user: User = User(**second_user_data)
