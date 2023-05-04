@@ -5,6 +5,15 @@ def regexp_extract(str, pattern):
     return re.compile(pattern).findall(str)
 
 
+def regexp_match(str, pattern):
+    res=re.compile(pattern).match(str)
+    if res:
+        return res.group(0)
+    return None
+        
+        
+
+
 if __name__ == '__main__':
     # 手机号码匹配
     '''
@@ -39,5 +48,11 @@ if __name__ == '__main__':
     
     # 带,的数字
     pattern = r'\b\d{1,3}(?:,\d{3})*(?:\.\d{3})?(?:,\d{3})*,\d{1,3}\b'
-    print(regexp_extract(str, pattern))
+    
+    # print(regexp_extract(str, pattern))
+    
+    # 邮件地址匹配：字符串模式匹配，全匹配
+    str ='email:test1101@qq.com'
+    pattern=r'^email:\s?[\da-zA-Z][\w]*@[\da-zA-z]+(\.[\da-zA-z]+){1,9}$'
+    print(regexp_match(str, pattern))
 
