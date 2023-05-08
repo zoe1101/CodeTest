@@ -19,7 +19,7 @@ import numpy as np
 
 
 class ChartGeneration:
-    def __init__(self, title=None):
+    def __init__(self, title=None, **kwargs):
         # 指定默认字体 下面三条代码用来解决绘图中出现的乱码
         matplotlib.rcParams['font.sans-serif'] = ['SimHei']
         matplotlib.rcParams['font.family'] = 'sans-serif'
@@ -27,20 +27,19 @@ class ChartGeneration:
         # 解决负号'-'显示为方块的问题
         matplotlib.rcParams['axes.unicode_minus'] = False
         self.fig = plt.figure(title)
-        self.fig_idx = 0
-        self.ax = []
+        self.fig.__dict__.update(kwargs)
+        self.ax = None
 
-    def chart_setting(self, nrow, ncol, index, configs):
+    def chart_setting(self, nrow, ncol, idx, cfg):
         '''
         图表展示设置
         '''
-        self.ax.append(self.fig.add_subplot(nrow, ncol, index, projection=configs['projection']))
-        self.ax[self.fig_idx].set_title(configs['title'])  # 设置标题
-        self.ax[self.fig_idx].set_xlabel(configs['xlabel'])  # 设置x轴描述
-        self.ax[self.fig_idx].set_ylabel(configs['ylabel'])  # 设置y轴描述
-        self.ax[self.fig_idx].set_xticklabels(configs['xticklabels'])  # 设置x轴刻度标签
-        self.ax[self.fig_idx].set_yticklabels(configs['yticklabels'])  # 设置x轴刻度标签
-
+        self.ax = self.fig.add_subplot(nrow, ncol, idx, projection=cfg['projection'])
+        self.ax.set_title(cfg['title'])  # 设置标题
+        self.ax.set_xlabel(cfg['xlabel'])  # 设置x轴描述
+        self.ax.set_ylabel(cfg['ylabel'])  # 设置y轴描述
+        self.ax.set_xticklabels(cfg['xticklabels'])  # 设置x轴刻度标签
+        self.ax.set_yticklabels(cfg['yticklabels'])  # 设置x轴刻度标签
 
     def show(self):
         '''
@@ -58,56 +57,49 @@ class ChartGeneration:
         直方图
         :return:
         '''
-        self.ax[self.fig_idx].hist(x, y, **kwargs)
-        self.fig_idx += 1
+        self.ax.hist(x, y, **kwargs)
 
     def bar_chart(self, x, y, **kwargs):
         '''
         柱状图
         :return:
         '''
-        self.ax[self.fig_idx].bar(x, y, **kwargs)
-        self.fig_idx += 1
+        self.ax.bar(x, y, **kwargs)
 
     def line_chart(self, x, y, **kwargs):
         '''
         折线图
         :return:
         '''
-        self.ax[self.fig_idx].plot(x, y, **kwargs)
-        self.fig_idx += 1
+        self.ax.plot(x, y, **kwargs)
 
     def pie(self, x, y, **kwargs):
         '''
         饼图
         :return:
         '''
-        self.ax[self.fig_idx].pie(y, labels=x, **kwargs)
-        self.fig_idx += 1
+        self.ax.pie(y, labels=x, **kwargs)
 
     def scatter(self, x, y, **kwargs):
         '''
         散点图
         :return:
         '''
-        self.ax[self.fig_idx].scatter(x, y, **kwargs)
-        self.fig_idx += 1
+        self.ax.scatter(x, y, **kwargs)
 
     def boxplot(self, data_to_plot, **kwargs):
         '''
         箱型图
         :return:
         '''
-        self.ax[self.fig_idx].boxplot(data_to_plot, **kwargs)
-        self.fig_idx += 1
+        self.ax.boxplot(data_to_plot, **kwargs)
 
     def violinplot(self, data_to_plot, **kwargs):
         '''
         提琴图
         :return:
         '''
-        self.ax[self.fig_idx].violinplot(data_to_plot, **kwargs)
-        self.fig_idx += 1
+        self.ax.violinplot(data_to_plot, **kwargs)
 
     def plot3D(self, x, y, z, **kwargs):
         '''
@@ -115,8 +107,7 @@ class ChartGeneration:
         :return:
         '''
 
-        self.ax[self.fig_idx].plot3D(x, y, z, **kwargs)
-        self.fig_idx += 1
+        self.ax.plot3D(x, y, z, **kwargs)
 
     def scatter3D(self, x, y, z, c, **kwargs):
         '''
@@ -124,8 +115,7 @@ class ChartGeneration:
         :return:
         '''
 
-        self.ax[self.fig_idx].scatter3D(x, y, z, c=c)
-        self.fig_idx += 1
+        self.ax.scatter3D(x, y, z, c=c)
 
     def contour3D(self, x, y, z, **kwargs):
         '''
@@ -133,8 +123,7 @@ class ChartGeneration:
         :return:
         '''
 
-        self.ax[self.fig_idx].contour3D(x, y, z, **kwargs)
-        self.fig_idx += 1
+        self.ax.contour3D(x, y, z, **kwargs)
 
     def plot_wireframe(self, x, y, z, **kwargs):
         '''
@@ -142,8 +131,7 @@ class ChartGeneration:
         :return:
         '''
 
-        self.ax[self.fig_idx].plot_wireframe(x, y, z, **kwargs)
-        self.fig_idx += 1
+        self.ax.plot_wireframe(x, y, z, **kwargs)
 
     def plot_surface(self, x, y, z, **kwargs):
         '''
@@ -151,8 +139,7 @@ class ChartGeneration:
         :return:
         '''
 
-        self.ax[self.fig_idx].plot_surface(x, y, z, **kwargs)
-        self.fig_idx += 1
+        self.ax.plot_surface(x, y, z, **kwargs)
 
 
 def f(x, y):
@@ -160,40 +147,40 @@ def f(x, y):
 
 
 if __name__ == '__main__':
-    cg = ChartGeneration('测试绘图')
-    configs = {'title': '折线图', 'xlabel': 'x1', 'ylabel': 'y1',
+    cg = ChartGeneration('测试绘图', facecolor='r', dgecolor='g', frameon=True)
+    cfg = {'title': '折线图', 'xlabel': 'x1', 'ylabel': 'y1',
                'xticklabels': [], 'yticklabels': [], 'projection': None}
     x = [1, 2, 3, 4, 5]
     y = [1, 4, 9, 16, 25]
-    cg.chart_setting(4, 1, 1, configs)
+    cg.chart_setting(4, 1, 1, cfg)
     cg.line_chart(x, y, color='r', lw=1)
 
-    configs = {'title': '柱状图', 'xlabel': 'x2', 'ylabel': 'y2',
+    cfg = {'title': '柱状图', 'xlabel': 'x2', 'ylabel': 'y2',
                'xticklabels': [], 'yticklabels': [], 'projection': None}
     x = [1, 2, 3, 4, 5]
     y = [1, 4, 9, 16, 25]
-    cg.chart_setting(4, 3, 4, configs)
+    cg.chart_setting(4, 3, 4, cfg)
     cg.bar_chart(x, y, color='b', width=0.75)
 
-    configs = {'title': '直方图', 'xlabel': 'x3', 'ylabel': 'y3',
+    cfg = {'title': '直方图', 'xlabel': 'x3', 'ylabel': 'y3',
                'xticklabels': [], 'yticklabels': [], 'projection': None}
     x = np.array([22, 87, 5, 43, 56, 73, 55, 54, 11, 20, 51, 5, 79, 31, 27])
     y = [0, 25, 50, 75, 100]
-    cg.chart_setting(4, 3, 5, configs)
+    cg.chart_setting(4, 3, 5, cfg)
     cg.histogram(x, y, histtype='stepfilled', facecolor='r', alpha=0.65)
 
-    configs = {'title': '饼图', 'xlabel': '', 'ylabel': '',
+    cfg = {'title': '饼图', 'xlabel': '', 'ylabel': '',
                'xticklabels': [], 'yticklabels': [], 'projection': None}
     x = ['C', 'C++', 'Java', 'Python', 'PHP']
     y = [23, 17, 35, 29, 12]
-    cg.chart_setting(4, 3, 6, configs)
+    cg.chart_setting(4, 3, 6, cfg)
     cg.pie(x, y, autopct='%1.2f%%')
 
-    configs = {'title': '散点图', 'xlabel': '', 'ylabel': '',
+    cfg = {'title': '散点图', 'xlabel': '', 'ylabel': '',
                'xticklabels': [], 'yticklabels': [], 'projection': None}
     x = [1, 2, 3, 4, 5]
     y = [1, 4, 9, 16, 25]
-    cg.chart_setting(4, 3, 7, configs)
+    cg.chart_setting(4, 3, 7, cfg)
     cg.scatter(x, y, color='b')
 
     np.random.seed(10)
@@ -202,55 +189,55 @@ if __name__ == '__main__':
     collectn_3 = np.random.normal(90, 20, 200)
     collectn_4 = np.random.normal(70, 25, 200)
     data_to_plot = [collectn_1, collectn_2, collectn_3, collectn_4]
-    cg.chart_setting(4, 3, 8, configs)
+    cg.chart_setting(4, 3, 8, cfg)
     cg.boxplot(data_to_plot)
 
-    configs = {'title': '提琴图', 'xlabel': '', 'ylabel': '',
+    cfg = {'title': '提琴图', 'xlabel': '', 'ylabel': '',
                'xticklabels': [], 'yticklabels': [], 'projection': None}
-    cg.chart_setting(4, 3, 9, configs)
+    cg.chart_setting(4, 3, 9, cfg)
     cg.violinplot(data_to_plot)
 
-    configs = {'title': '三维线图', 'xlabel': 'x', 'ylabel': 'y',
+    cfg = {'title': '三维线图', 'xlabel': 'x', 'ylabel': 'y',
                'xticklabels': [], 'yticklabels': [], 'projection': '3d'}
     z = np.linspace(0, 1, 100)
     x = z * np.sin(20 * z)
     y = z * np.cos(20 * z)
-    cg.chart_setting(4, 3, 10, configs)
+    cg.chart_setting(4, 3, 10, cfg)
     cg.plot3D(x, y, z)
 
-    configs = {'title': '3D散点图', 'xlabel': 'x', 'ylabel': 'y',
+    cfg = {'title': '3D散点图', 'xlabel': 'x', 'ylabel': 'y',
                'xticklabels': [], 'yticklabels': [], 'projection': '3d'}
     z = np.linspace(0, 1, 100)
     x = z * np.sin(20 * z)
     y = z * np.cos(20 * z)
     c = x + y
-    cg.chart_setting(4, 3, 11, configs)
+    cg.chart_setting(4, 3, 11, cfg)
     cg.scatter3D(x, y, z, c)
 
     # # 构建x、y数据
-    # configs = {'title': '3D等高线图', 'xlabel': 'x', 'ylabel': 'y',
+    # cfg = {'title': '3D等高线图', 'xlabel': 'x', 'ylabel': 'y',
     #            'xticklabels': [], 'yticklabels': [], 'projection': '3d'}
     # x = np.linspace(-6, 6, 30)
     # y = np.linspace(-6, 6, 30)
     # # 将数据网格化处理
     # X, Y = np.meshgrid(x, y)
     # Z = f(X, Y)
-    # cg.chart_setting(4, 3, 12, configs)
+    # cg.chart_setting(4, 3, 12, cfg)
     # cg.contour3D(X,Y,Z)
 
     # 构建x、y数据
-    # configs = {'title': '3D线框图', 'xlabel': 'x', 'ylabel': 'y',
+    # cfg = {'title': '3D线框图', 'xlabel': 'x', 'ylabel': 'y',
     #            'xticklabels': [], 'yticklabels': [], 'projection': '3d'}
     # x = np.linspace(-6, 6, 30)
     # y = np.linspace(-6, 6, 30)
     # # 将数据网格化处理
     # X, Y = np.meshgrid(x, y)
     # Z = f(X, Y)
-    # cg.chart_setting(4, 3, 12, configs)
+    # cg.chart_setting(4, 3, 12, cfg)
     # cg.plot_wireframe(X,Y,Z)
 
     # 构建x、y数据
-    configs = {'title': '3D曲面图', 'xlabel': 'x', 'ylabel': 'y',
+    cfg = {'title': '3D曲面图', 'xlabel': 'x', 'ylabel': 'y',
                'xticklabels': [], 'yticklabels': [], 'projection': '3d'}
     # 求向量积(outer()方法又称外积)
     x = np.outer(np.linspace(-2, 2, 30), np.ones(30))
@@ -258,7 +245,7 @@ if __name__ == '__main__':
     y = x.copy().T
     # 数据z
     z = np.cos(x ** 2 + y ** 2)
-    cg.chart_setting(4, 3, 12, configs)
+    cg.chart_setting(4, 3, 12, cfg)
     cg.plot_surface(x, y, z)
 
     cg.save('./../data/plt.png')
