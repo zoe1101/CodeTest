@@ -41,18 +41,6 @@ class ChartGeneration:
         self.ax[self.fig_idx].set_xticklabels(configs['xticklabels'])  # 设置x轴刻度标签
         self.ax[self.fig_idx].set_yticklabels(configs['yticklabels'])  # 设置x轴刻度标签
 
-    def chart_setting1(self, shape, configs):
-        '''
-        图表展示设置
-        '''
-        for i in range(len(configs)):
-            self.ax.append(plt.subplot2grid(shape, configs[i]['location'], rowspan=configs[i]['rowspan'],
-                                            colspan=configs[i]['colspan']))
-            self.ax[i].set_title(configs[i]['title'])  # 设置标题
-            self.ax[i].set_xlabel(configs[i]['xlabel'])  # 设置x轴描述
-            self.ax[i].set_ylabel(configs[i]['ylabel'])  # 设置y轴描述
-            self.ax[i].set_xticklabels(configs[i]['xticklabels'])  # 设置x轴刻度标签
-            self.ax[i].set_yticklabels(configs[i]['yticklabels'])  # 设置x轴刻度标签
 
     def show(self):
         '''
