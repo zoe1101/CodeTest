@@ -33,6 +33,7 @@ class FileHandler:
                         file_list.extend([os.path.join(home, file)] if self.get_file_format(file) == ext else [])
         elif os.path.isfile(dir):
             file_list.append(dir)
+
         return file_list
 
     def create_file(self, file):
@@ -53,8 +54,8 @@ class FileHandler:
         for f in file_list:
             os.remove(f)
 
-    def rename_file(self,filename,target_filename):
-        os.rename(filename,target_filename)
+    def rename_file(self, filename, target_filename):
+        os.rename(filename, target_filename)
 
     def get_file_format(self, file):
         return os.path.splitext(file)[-1]
@@ -70,7 +71,7 @@ if __name__ == '__main__':
     fl.remove_file('../../data/压缩解压test/create_file.txt')
     fl.move_file('../../data/create_file.txt', '../../data/压缩解压test')
     fl.remove_file('../../data/压缩解压test/create_file.txt')
-    fl.rename_file('../../data/config.ini','../../data/confignew.ini')
+    fl.rename_file('../../data/config.ini', '../../data/confignew.ini')
     fl.rename_file('../../data/confignew.ini', '../../data/config.ini')
     fl.rename_file('../../data', '../../datanew')
     fl.rename_file('../../datanew', '../../data')
