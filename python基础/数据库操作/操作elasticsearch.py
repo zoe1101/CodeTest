@@ -3,9 +3,10 @@ import functools
 from datetime import datetime, timedelta
 from elasticsearch import Elasticsearch, helpers
 
+
 class ElasticsearchApi(object):
-    def __init__(self,host='10.93.111.81', port=9200):
-        self.es = Elasticsearch(host=host, port=post)
+    def __init__(self, host='127.0.0.1', port=9200):
+        self.es = Elasticsearch(hosts=[{'host': host, 'port': port}])
 
     def handle_index(self, handler, index):
         """
@@ -89,9 +90,10 @@ class ElasticsearchApi(object):
             } for i, item in enumerate(data))  # 1000000条,共耗时约 146.50 秒
         return helpers.bulk(self.es, action, stats_only=True)
 
+
 if __name__ == '__main__':
     ea = ElasticsearchApi()
-    from utils.country import COUNTRY
+    # from utils.country import COUNTRY
 
     # ea.handle_index('delete',index='world')
     # print(ea.bach_gen_doc(index='new_world', fields=['name', 'x_pos', 'y_pos'], data=COUNTRY))
