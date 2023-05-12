@@ -58,10 +58,10 @@ class ExcelOperation():
         return res
 
     def write_area(self, area_value, row_start_index, col_start_index):
-        m,n=len(area_value),len(area_value[0])
+        m, n = len(area_value), len(area_value[0])
         for i in range(m):
             for j in range(n):
-                self.worksheet.cell(row_start_index+i, col_start_index+j).value = area_value[i][j]
+                self.worksheet.cell(row_start_index + i, col_start_index + j).value = area_value[i][j]
         self.save_excel()
 
     def save_excel(self):
@@ -70,6 +70,22 @@ class ExcelOperation():
         :param path: 保存的路径
         """
         self.workbook.save(self.file_path)
+
+    def set_style(self):
+        '''
+        表格样式设置
+        :return:
+        '''
+        pass
+
+    def add_sheet(self, sheet_name):
+        pass
+
+    def delete_sheet(self, sheet_name):
+        pass
+
+    def update_sheet_name(self, ori_name, new_name):
+        pass
 
 
 if __name__ == '__main__':
