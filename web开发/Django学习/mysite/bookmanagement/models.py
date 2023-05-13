@@ -9,7 +9,7 @@ class Book(models.Model):
     author = models.CharField(max_length=64, verbose_name='作者')
     price = models.FloatField(default=0.0, verbose_name='定价')
     publish_date = models.DateField(null=True, blank=True, verbose_name='出版日期')
-    category = models.CharField(max_length=32, default='未分类', verbose_name='书籍分类')
+    category = models.CharField(max_length=32, default='实战练习', verbose_name='书籍分类')
     create_datetime = models.DateTimeField(auto_now_add=True, verbose_name='添加时间')
 
     def __str__(self):

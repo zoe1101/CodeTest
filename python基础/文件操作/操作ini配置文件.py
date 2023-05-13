@@ -1,8 +1,45 @@
+'''
+后缀名.ini 用于存储项目全局配置变量
+比如：接口地址 项目地址....输出文件路径
 
+ini文件编写格式
+[节点]
+选项=选项值
+注释前面加;
+
+
+注意：节点不可以重复
+'''
 import configparser
 
 
 class INIHelper(object):
+    def __init__(self):
+        self.config = configparser.ConfigParser()
+
+    def get_sections(self):  # 获取ini文件中所有的节点
+        return self.config.sections()
+
+    def get_options(self, section):  # 获取ini文件中某个节点下所有选项
+        return self.config.options(section)
+
+    def get_value(self, section, option):  # 获取某个节点下某个选项的选项值
+        return self.config.get(section=section, option=option)
+
+    def get_items(self, section):  # 获取某个节点下的所有选项及选项值  ---》元组列表
+        return self.config.items(section=section)
+
+    def add_node(self, section, option, value):  # 添加节点
+        if section not in self.get_sections():
+            self.config.add_section(section)
+            self.config.set(section, option, value)
+
+    def remove_node(self, section):  # 删除节点
+        if section not in self.get_sections():
+            self.config.remove_section(section)
+
+    def remove_option(self, section, option):  # 删除选项及选项值
+        self.config.remove_option(section, option)
 
     @staticmethod
     def read_from_ini(path, section=None, option=None, encoding=None):

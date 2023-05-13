@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编程语言学习Demo</title>
+</head>
+
+<body>
+    <h1>编程语言学习</h1>
+    <div>
+        <div style="color:red; ">
+            <b>注意：这是一个学习的Demo</b>
+        </div>
+    </div>
+
+    <table>
+        <tr>
+            <td>编程语言</td>
+            <td>学习目标</td>
+            <td>学习地址</td>
+        </tr>
+        {% for my_dict in info %}
+        <tr>
+            <!-- 模板过滤器使用 -->
+            <td>{{my_dict.编程语言|replace('nan','')}}</td>
+            <td>{{my_dict.学习目标|replace('nan','')}}</td>
+            <td><a href="{{my_dict.URL|e}}" target="_blank">{{my_dict.学习地址|replace('nan','')}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <style>
+        table {
+            /*为页面中所有的table标签添加样式*/
+            width: 1800px;
+            /*让表格居中显示*/
+            border: black 1px solid;
+            /*添加边框*/
+            border-spacing: 0px;
+            /* 去掉table
+            /*标签及其子标签边框之间的白色空隙*/
+            border-collapse: collapse;
+            /*去掉重合线*/
+        }
+
+        th {
+            /*为页面中所有的th标签添加样式*/
+            border: black 1px solid;
+            /*添加边框*/
+        }
+
+        td {
+            /*为页面中所有的td标签添加样式*/
+            border: black 1px solid;
+
+        }
+    </style>
+
+</body>
+
+</html>
+

@@ -3,8 +3,8 @@ dic = {}
 print(dic)
 dic = dict()
 print(dic)
-# 2.创建多个元素的字典：
 
+# 2.创建多个元素的字典：
 dic = dict(a=1,b=2) #注意：该方式键作为形参名使用不可以添加引号，必须符合变量规则
 print(dic)
 dic = dict([('a',1),('b',1)])
