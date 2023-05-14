@@ -1,5 +1,10 @@
 import openpyxl
+from openpyxl.styles import Font, Alignment,Border,Side,PatternFill
 
+'''
+样式设置参考：
+https://mp.weixin.qq.com/s?__biz=MzAxMjUyNDQ5OA==&mid=2653577413&idx=1&sn=8129b8339233686054f9f9a72230e4ae&chksm=806e4e78b719c76ebe73b98f9c7891bf917d2a83b428d92d4f973987d34194adb2c228792dca&scene=27
+'''
 
 class ExcelOperation():
     def __init__(self, file_path, sheet_name="Sheet1"):
@@ -71,25 +76,84 @@ class ExcelOperation():
         """
         self.workbook.save(self.file_path)
 
-    def set_style(self):
+    def set_font(self,row_start_index, row_end_index, col_start_index, col_end_index,**kwargs):
         '''
-        表格样式设置
+        表格字体设置
         :return:
         '''
-        pass
+        for row in range(row_start_index, row_end_index + 1):
+            for col in range(col_start_index, col_end_index + 1):
+                self.worksheet.cell(row,col).font = Font(**kwargs)
+        self.save_excel()
+                
+    def set_alignment(self,row_start_index, row_end_index, col_start_index, col_end_index,**kwargs):
+        '''
+        表格对齐设置
+        :return:
+        '''
+        for row in range(row_start_index, row_end_index + 1):
+            for col in range(col_start_index, col_end_index + 1):
+                self.worksheet.cell(row,col).alignment = Alignment(**kwargs)
+        self.save_excel()
+    
+    def set_border(self,row_start_index, row_end_index, col_start_index, col_end_index,**kwargs):
+        '''
+        表格边框设置
+        :return:
+        '''
+        for row in range(row_start_index, row_end_index + 1):
+            for col in range(col_start_index, col_end_index + 1):
+                self.worksheet.cell(row,col).border = Border(**kwargs)
+        self.save_excel()
+    def set_background_colors(self,row_start_index, row_end_index, col_start_index, col_end_index,**kwargs):
+        '''
+        表格背景颜色设置
+        :return:
+        '''
+        for row in range(row_start_index, row_end_index + 1):
+            for col in range(col_start_index, col_end_index + 1):
+                self.worksheet.cell(row,col).fill = PatternFill(**kwargs)
+        self.save_excel()
+        
+        
 
-    def add_sheet(self, sheet_name):
-        pass
+    def add_sheet(self, sheet_name,idx=None):
+        '''
+        添加表格sheet页
+        '''
+        self.workbook.create_sheet(sheet_name, idx)
+        self.save_excel()
 
     def delete_sheet(self, sheet_name):
-        pass
+        '''
+        删除sheet页
+        '''
+        if sheet_name in self.workbook.sheetnames:
+            print('dddddd')
+            del self.workbook[sheet_name]
+            self.save_excel()
+        
 
     def update_sheet_name(self, ori_name, new_name):
-        pass
-
+        '''
+        修改sheet名
+        '''
+        self.workbook[ori_name].title = new_name
+        self.save_excel()
 
 if __name__ == '__main__':
     sheet = ExcelOperation("../../data/test.xlsx", "Sheet1")
-    data = sheet.read_area(1, 1, 1, 3)
-    print(data)
-    sheet.write_area(data, 4, 1)
+    # data = sheet.read_area(1, 1, 1, 3) #读
+    # print(data)
+    # sheet.write_area(data, 4, 1) #写
+    # sheet.add_sheet('newsheet')
+    # sheet.update_sheet_name('newsheet','newsheetu')
+    # sheet.delete_sheet('newsheetu')
+    
+    # sheet.set_font(1,1,1,3,name="Arial", size=14, color="00FF0000")
+    # sheet.set_alignment(1,1,1,3,horizontal='left',vertical='center')
+    
+    thin = Side(border_style="thin", color='00FF00FF')
+    double = Side(border_style="double", color='00008000')
+    sheet.set_border(1,1,1,3,top=double, left=thin, right=thin, bottom=double)
+    sheet.set_background_colors(1,1,1,3,start_color='00FFFF00', end_color='00FFFF00',fill_type = "solid")
