@@ -31,7 +31,7 @@ class ExcelOperation():
         return res
 
     def write_row(self, value, row_index):
-        for col in range(self.get_cols()):
+        for col in range(len(value)):
             self.worksheet.cell(row_index, col + 1).value = value[col]
         self.save_excel()
 
@@ -42,7 +42,7 @@ class ExcelOperation():
         return res
 
     def write_col(self, value, col_index):
-        for row in range(self.get_rows()):
+        for row in range(len(value)):
             self.worksheet.cell(row + 1, col_index).value = value[row]
         self.save_excel()
 
@@ -53,7 +53,10 @@ class ExcelOperation():
         self.worksheet.cell(row_index, col_index).value = value
         self.save_excel()
 
-    def read_area(self, row_start_index, row_end_index, col_start_index, col_end_index):
+    def read_area(self, row_start_index=1, row_end_index=None, col_start_index=1, col_end_index=None):
+        row_end_index = self.get_rows() if not row_end_index else row_end_index
+        col_end_index = self.get_cols() if not col_end_index else col_end_index
+
         res = []
         for row in range(row_start_index, row_end_index + 1):
             temp = []
