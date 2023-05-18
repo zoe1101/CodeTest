@@ -16,7 +16,7 @@ def is_valid_combination(row):
         for data in datas:
             temp = 0
             for i in range(n):
-                if data[i] == row[i]:
+                if data[i] and row[i] in data[i].split(';'):
                     temp += 1
                 elif data[i] is None:
                     temp += 1
@@ -27,11 +27,10 @@ def is_valid_combination(row):
             else:
                 continue
 
-
     return True
 
 
-file = '.././data/正交案例生成器.xlsx'
+file = '.././data/正交案例生成器2.xlsx'
 eo = ExcelOperation(file, '因子表')
 keys = eo.read_col(1)[1:]
 print(keys)
@@ -45,6 +44,9 @@ cases = []
 for i, pairs in enumerate(AllPairs(parameters, filter_func=is_valid_combination)):
     print("用例编号{:2d}: {}".format(i, pairs))
     cases.append(pairs)
+
+cases.sort()
+
 eo.add_sheet('生成的案例')
 eo2 = ExcelOperation(file, '生成的案例')
 eo2.write_row(keys, 1)
