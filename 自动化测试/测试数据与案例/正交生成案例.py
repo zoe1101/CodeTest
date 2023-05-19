@@ -30,7 +30,7 @@ def is_valid_combination(row):
     return True
 
 
-file = '.././data/正交案例生成器2.xlsx'
+file = '../../data/正交案例生成器2.xlsx'
 eo = ExcelOperation(file, '因子表')
 keys = eo.read_col(1)[1:]
 print(keys)
