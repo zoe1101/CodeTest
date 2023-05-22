@@ -1,8 +1,6 @@
 # coding: utf-8
 import os.path
 import pyttsx3
-import soundfile as sf
-import numpy as np
 from pydub import AudioSegment  # Pydub是Python音频处理库，可以对音频进行切割、合并、转换、调整音量等操作。
 
 '''
