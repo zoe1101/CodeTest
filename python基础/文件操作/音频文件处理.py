@@ -1,22 +1,126 @@
-# PydubÊÇPythonÒôÆµ´¦Àí¿â£¬¿ÉÒÔ¶ÔÒôÆµ½øĞĞÇĞ¸î¡¢ºÏ²¢¡¢×ª»»¡¢µ÷ÕûÒôÁ¿µÈ²Ù×÷¡£
-import pydub
+# coding: utf-8
+import os.path
 import pyttsx3
+import soundfile as sf
+import numpy as np
+from pydub import AudioSegment  # Pydubæ˜¯PythonéŸ³é¢‘å¤„ç†åº“ï¼Œå¯ä»¥å¯¹éŸ³é¢‘è¿›è¡Œåˆ‡å‰²ã€åˆå¹¶ã€è½¬æ¢ã€è°ƒæ•´éŸ³é‡ç­‰æ“ä½œã€‚
 
 '''
-ÒôÆµÉú³É
-ÒôÆµÎÄ¼ş¶ÁÈ¡
-ÒôÆµÎÄ¼şĞ´Èë
-ÒôÆµºÏ³É
-ÒôÆµÇĞ¸î
-ÒôÆµ¸ñÊ½×ª»»
-ÒôÆµÊôĞÔµ÷Õû
+éŸ³é¢‘ç”Ÿæˆ
+éŸ³é¢‘æ–‡ä»¶è¯»å–ï¼šéŸ³é¢‘æ ¼å¼ï¼šwavã€pcmã€mp3ã€wmaç­‰
+éŸ³é¢‘æ–‡ä»¶å†™å…¥
+éŸ³é¢‘åˆå¹¶
+éŸ³é¢‘åˆ‡å‰²
+éŸ³é¢‘æ ¼å¼è½¬æ¢
+éŸ³é¢‘å±æ€§è°ƒæ•´
 '''
+
 
 # https://blog.csdn.net/weixin_43824829/article/details/127554357
 def tts(text, out_path=None):
+    '''
+    è¯­éŸ³ç”Ÿæˆ
+    :param text:
+    :param out_path:
+    :return:
+    '''
     voice = pyttsx3.init()
     voice.say(text)
     if out_path:
         voice.save_to_file(text, out_path)
     voice.runAndWait()
 
+
+def read_audio(file):
+    '''
+    è¯­éŸ³è¯»å–
+    :param file:
+    :return:
+    '''
+    ext = os.path.splitext(file)[-1].lower()
+    audio = AudioSegment.from_file(file, format=ext)
+    return audio
+
+
+def play_audio(audio):
+    '''
+    è¯­éŸ³æ’­æ”¾
+    :param audio:
+    :return:
+    '''
+    from pydub.playback import play
+    play(audio)
+
+
+def save_audio(audio, out_path, format):
+    audio.export(out_path, format=format.strip('.').lower())
+
+
+def segment_audio(audio, start=None, end=None):
+    '''
+    è¯­éŸ³åˆ‡å‰²
+    :param audio:
+    :param start:
+    :param end:
+    :return:
+    '''
+    if start and end:
+        return audio[start:end]
+    elif start:
+        return audio[start:]
+    elif end:
+        return audio[:end]
+    else:
+        return audio
+
+
+def concat_audio(files, out_path):
+    '''
+    è¯­éŸ³æ‹¼æ¥
+    :param files:
+    :param out_path:
+    :return:
+    '''
+    audio_list = []
+    for f in files:
+        audio_list.append(read_audio(f))
+
+    concat_audio = audio_list[0]
+    for ad in audio_list[1:]:
+        concat_audio += ad
+    save_audio(concat_audio, out_path, os.path.splitext(out_path)[-1])
+
+
+def mix_audio(files, out_path):
+    '''
+    è¯­éŸ³æ··åˆå åŠ 
+    :param files:
+    :param out_path:
+    :return:
+    '''
+    audio_list = []
+    for f in files:
+        audio_list.append(read_audio(f))
+
+    mix_audio = audio_list[0]
+    for ad in audio_list[1:]:
+        mix_audio.overlay(ad)
+    save_audio(mix_audio, out_path, os.path.splitext(out_path)[-1])
+
+
+def format_conversion(file, out_path, format):
+    '''
+    æ ¼å¼è½¬æ¢
+    :param file:
+    :param format:
+    :return:
+    '''
+    audio = AudioSegment.from_file(file)
+    filename = os.path.splitext(os.path.basename(file))[0]
+    save_audio(audio, os.path.join(out_path, filename + format), format)
+
+
+if __name__ == '__main__':
+    # tts('åƒäº†å—', '../../data/åƒäº†å—.wav')
+    # read_audio('../../data/åƒäº†å—.wav')
+    format_conversion('../../data/åƒäº†å—.wav', '../../data/', '.raw')
