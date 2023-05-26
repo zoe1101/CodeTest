@@ -1,0 +1,184 @@
+config:
+    name: testcase description
+    variables: {test_data: '测试工程师'}
+    verify: false
+teststeps:
+-   name: 系统登录
+    testcase: testcases/erp_login.yml
+-   name: /app/common/position/save
+    request:
+        cookies:
+            Hm_lpvt_a40372507a0e32054c266b4dce474b80: '1684833484'
+            Hm_lvt_a40372507a0e32054c266b4dce474b80: '1684833484'
+            access-token: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODUwMDYzOTAsInVzZXJEZXRhaWxzIjoie1wicm9sZXNcIjpbe1wiY29kZVwiOlwic3VwZXJhZG1pblwiLFwibmFtZVwiOlwi6LaF57qn566h55CG5ZGYXCIsXCJpZFwiOjF9XSxcIm9yZ0lkXCI6MSxcInBhc3N3b3JkXCI6XCIkMmEkMTAkTkVzck55QklQR0VMeDlEcElibS94LlZ3QU1PemhtWDRjT2ZPNGp6d1JKZjZYaXpZcnhqSTJcIixcImlkZW50aXR5XCI6MSxcIm5hbWVcIjpcIueuoeeQhuWRmFwiLFwiaWRcIjoxLFwic3RhdGVcIjoxLFwidXNlcm5hbWVcIjpcImFkbWluXCJ9In0.EcH7pKun3_-Qe1dX_zv3YN-YzuQIL6QFklG5EHptAKI
+            sidebarStatus: '1'
+        headers:
+            Accept: application/json, text/plain, */*
+            Accept-Encoding: gzip, deflate
+            Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+            Connection: keep-alive
+            Content-Length: '26'
+            Content-Type: application/json;charset=UTF-8
+            Cookie: Hm_lvt_a40372507a0e32054c266b4dce474b80=1684833484; Hm_lpvt_a40372507a0e32054c266b4dce474b80=1684833484;
+                access-token=eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODUwMDYzOTAsInVzZXJEZXRhaWxzIjoie1wicm9sZXNcIjpbe1wiY29kZVwiOlwic3VwZXJhZG1pblwiLFwibmFtZVwiOlwi6LaF57qn566h55CG5ZGYXCIsXCJpZFwiOjF9XSxcIm9yZ0lkXCI6MSxcInBhc3N3b3JkXCI6XCIkMmEkMTAkTkVzck55QklQR0VMeDlEcElibS94LlZ3QU1PemhtWDRjT2ZPNGp6d1JKZjZYaXpZcnhqSTJcIixcImlkZW50aXR5XCI6MSxcIm5hbWVcIjpcIueuoeeQhuWRmFwiLFwiaWRcIjoxLFwic3RhdGVcIjoxLFwidXNlcm5hbWVcIjpcImFkbWluXCJ9In0.EcH7pKun3_-Qe1dX_zv3YN-YzuQIL6QFklG5EHptAKI;
+                sidebarStatus=1
+            Host: erp2.hzb-it.com
+            Origin: http://erp2.hzb-it.com
+            Referer: http://erp2.hzb-it.com/
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.42
+            access-token: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODUwMDYzOTAsInVzZXJEZXRhaWxzIjoie1wicm9sZXNcIjpbe1wiY29kZVwiOlwic3VwZXJhZG1pblwiLFwibmFtZVwiOlwi6LaF57qn566h55CG5ZGYXCIsXCJpZFwiOjF9XSxcIm9yZ0lkXCI6MSxcInBhc3N3b3JkXCI6XCIkMmEkMTAkTkVzck55QklQR0VMeDlEcElibS94LlZ3QU1PemhtWDRjT2ZPNGp6d1JKZjZYaXpZcnhqSTJcIixcImlkZW50aXR5XCI6MSxcIm5hbWVcIjpcIueuoeeQhuWRmFwiLFwiaWRcIjoxLFwic3RhdGVcIjoxLFwidXNlcm5hbWVcIjpcImFkbWluXCJ9In0.EcH7pKun3_-Qe1dX_zv3YN-YzuQIL6QFklG5EHptAKI
+        json:
+            name: ${test_data}
+        method: POST
+        url: http://erp2.hzb-it.com/app/common/position/save
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json
+    -   eq:
+        - body.errCode
+        - 0
+    -   eq:
+        - body.data
+        - null
+    -   eq:
+        - body.msg
+        - 提交成功
+-   name: /app/common/position/list
+    request:
+        cookies:
+            Hm_lpvt_a40372507a0e32054c266b4dce474b80: '1684997378'
+            Hm_lvt_a40372507a0e32054c266b4dce474b80: '1684833484'
+            access-token: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODUxNTc1ODEsInVzZXJEZXRhaWxzIjoie1wicm9sZXNcIjpbe1wiY29kZVwiOlwic3VwZXJhZG1pblwiLFwibmFtZVwiOlwi6LaF57qn566h55CG5ZGYXCIsXCJpZFwiOjF9XSxcIm9yZ0lkXCI6MSxcInBhc3N3b3JkXCI6XCIkMmEkMTAkTkVzck55QklQR0VMeDlEcElibS94LlZ3QU1PemhtWDRjT2ZPNGp6d1JKZjZYaXpZcnhqSTJcIixcImlkZW50aXR5XCI6MSxcIm5hbWVcIjpcIueuoeeQhuWRmFwiLFwiaWRcIjoxLFwic3RhdGVcIjoxLFwidXNlcm5hbWVcIjpcImFkbWluXCJ9In0.ahvKUIibsGNqqhNn3zX5kv67koo0orqauTKRlj13bWk
+            sidebarStatus: '1'
+        headers:
+            Accept: application/json, text/plain, */*
+            Accept-Encoding: gzip, deflate
+            Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+            Connection: keep-alive
+            Cookie: Hm_lvt_a40372507a0e32054c266b4dce474b80=1684833484; sidebarStatus=1;
+                access-token=eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODUxNTc1ODEsInVzZXJEZXRhaWxzIjoie1wicm9sZXNcIjpbe1wiY29kZVwiOlwic3VwZXJhZG1pblwiLFwibmFtZVwiOlwi6LaF57qn566h55CG5ZGYXCIsXCJpZFwiOjF9XSxcIm9yZ0lkXCI6MSxcInBhc3N3b3JkXCI6XCIkMmEkMTAkTkVzck55QklQR0VMeDlEcElibS94LlZ3QU1PemhtWDRjT2ZPNGp6d1JKZjZYaXpZcnhqSTJcIixcImlkZW50aXR5XCI6MSxcIm5hbWVcIjpcIueuoeeQhuWRmFwiLFwiaWRcIjoxLFwic3RhdGVcIjoxLFwidXNlcm5hbWVcIjpcImFkbWluXCJ9In0.ahvKUIibsGNqqhNn3zX5kv67koo0orqauTKRlj13bWk;
+                Hm_lpvt_a40372507a0e32054c266b4dce474b80=1684997378
+            Host: erp2.hzb-it.com
+            Referer: http://erp2.hzb-it.com/?
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.42
+            access-token: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODUxNTc1ODEsInVzZXJEZXRhaWxzIjoie1wicm9sZXNcIjpbe1wiY29kZVwiOlwic3VwZXJhZG1pblwiLFwibmFtZVwiOlwi6LaF57qn566h55CG5ZGYXCIsXCJpZFwiOjF9XSxcIm9yZ0lkXCI6MSxcInBhc3N3b3JkXCI6XCIkMmEkMTAkTkVzck55QklQR0VMeDlEcElibS94LlZ3QU1PemhtWDRjT2ZPNGp6d1JKZjZYaXpZcnhqSTJcIixcImlkZW50aXR5XCI6MSxcIm5hbWVcIjpcIueuoeeQhuWRmFwiLFwiaWRcIjoxLFwic3RhdGVcIjoxLFwidXNlcm5hbWVcIjpcImFkbWluXCJ9In0.ahvKUIibsGNqqhNn3zX5kv67koo0orqauTKRlj13bWk
+        method: GET
+        params:
+            name: ${test_data}
+            page: '1'
+            pageSize: '30'
+        url: http://erp2.hzb-it.com/app/common/position/list
+    extract:
+        test_data_id: body.records[0].id
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json
+#    -   eq:
+#        - body.total
+#        - 1
+#    -   eq:
+#        - body.page
+#        - 1
+#    -   eq:
+#        - body.pageSize
+#        - 30
+#    -   eq:
+#        - body.pageCount
+#        - 1
+-   name: /app/common/position/save
+    request:
+        cookies:
+            Hm_lpvt_a40372507a0e32054c266b4dce474b80: '1684997378'
+            Hm_lvt_a40372507a0e32054c266b4dce474b80: '1684833484'
+            access-token: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODUxNTc1ODEsInVzZXJEZXRhaWxzIjoie1wicm9sZXNcIjpbe1wiY29kZVwiOlwic3VwZXJhZG1pblwiLFwibmFtZVwiOlwi6LaF57qn566h55CG5ZGYXCIsXCJpZFwiOjF9XSxcIm9yZ0lkXCI6MSxcInBhc3N3b3JkXCI6XCIkMmEkMTAkTkVzck55QklQR0VMeDlEcElibS94LlZ3QU1PemhtWDRjT2ZPNGp6d1JKZjZYaXpZcnhqSTJcIixcImlkZW50aXR5XCI6MSxcIm5hbWVcIjpcIueuoeeQhuWRmFwiLFwiaWRcIjoxLFwic3RhdGVcIjoxLFwidXNlcm5hbWVcIjpcImFkbWluXCJ9In0.ahvKUIibsGNqqhNn3zX5kv67koo0orqauTKRlj13bWk
+            sidebarStatus: '1'
+        headers:
+            Accept: application/json, text/plain, */*
+            Accept-Encoding: gzip, deflate
+            Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+            Connection: keep-alive
+            Content-Length: '31'
+            Content-Type: application/json;charset=UTF-8
+            Cookie: Hm_lvt_a40372507a0e32054c266b4dce474b80=1684833484; sidebarStatus=1;
+                access-token=eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODUxNTc1ODEsInVzZXJEZXRhaWxzIjoie1wicm9sZXNcIjpbe1wiY29kZVwiOlwic3VwZXJhZG1pblwiLFwibmFtZVwiOlwi6LaF57qn566h55CG5ZGYXCIsXCJpZFwiOjF9XSxcIm9yZ0lkXCI6MSxcInBhc3N3b3JkXCI6XCIkMmEkMTAkTkVzck55QklQR0VMeDlEcElibS94LlZ3QU1PemhtWDRjT2ZPNGp6d1JKZjZYaXpZcnhqSTJcIixcImlkZW50aXR5XCI6MSxcIm5hbWVcIjpcIueuoeeQhuWRmFwiLFwiaWRcIjoxLFwic3RhdGVcIjoxLFwidXNlcm5hbWVcIjpcImFkbWluXCJ9In0.ahvKUIibsGNqqhNn3zX5kv67koo0orqauTKRlj13bWk;
+                Hm_lpvt_a40372507a0e32054c266b4dce474b80=1684997378
+            Host: erp2.hzb-it.com
+            Origin: http://erp2.hzb-it.com
+            Referer: http://erp2.hzb-it.com/?
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.42
+            access-token: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODUxNTc1ODEsInVzZXJEZXRhaWxzIjoie1wicm9sZXNcIjpbe1wiY29kZVwiOlwic3VwZXJhZG1pblwiLFwibmFtZVwiOlwi6LaF57qn566h55CG5ZGYXCIsXCJpZFwiOjF9XSxcIm9yZ0lkXCI6MSxcInBhc3N3b3JkXCI6XCIkMmEkMTAkTkVzck55QklQR0VMeDlEcElibS94LlZ3QU1PemhtWDRjT2ZPNGp6d1JKZjZYaXpZcnhqSTJcIixcImlkZW50aXR5XCI6MSxcIm5hbWVcIjpcIueuoeeQhuWRmFwiLFwiaWRcIjoxLFwic3RhdGVcIjoxLFwidXNlcm5hbWVcIjpcImFkbWluXCJ9In0.ahvKUIibsGNqqhNn3zX5kv67koo0orqauTKRlj13bWk
+        json:
+            id: $test_data_id
+            name: ${test_data}改
+        method: POST
+        url: http://erp2.hzb-it.com/app/common/position/save
+    validate:
+#    -   eq:
+#        - status_code
+#        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json
+#    -   eq:
+#        - body.errCode
+#        - 0
+#    -   eq:
+#        - body.data
+#        - null
+#    -   eq:
+#        - body.msg
+#        - 提交成功
+-   name: /app/common/position/delete
+    request:
+        cookies:
+            Hm_lpvt_a40372507a0e32054c266b4dce474b80: '1684997378'
+            Hm_lvt_a40372507a0e32054c266b4dce474b80: '1684833484'
+            access-token: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODUxNTc1ODEsInVzZXJEZXRhaWxzIjoie1wicm9sZXNcIjpbe1wiY29kZVwiOlwic3VwZXJhZG1pblwiLFwibmFtZVwiOlwi6LaF57qn566h55CG5ZGYXCIsXCJpZFwiOjF9XSxcIm9yZ0lkXCI6MSxcInBhc3N3b3JkXCI6XCIkMmEkMTAkTkVzck55QklQR0VMeDlEcElibS94LlZ3QU1PemhtWDRjT2ZPNGp6d1JKZjZYaXpZcnhqSTJcIixcImlkZW50aXR5XCI6MSxcIm5hbWVcIjpcIueuoeeQhuWRmFwiLFwiaWRcIjoxLFwic3RhdGVcIjoxLFwidXNlcm5hbWVcIjpcImFkbWluXCJ9In0.ahvKUIibsGNqqhNn3zX5kv67koo0orqauTKRlj13bWk
+            sidebarStatus: '1'
+        headers:
+            Accept: application/json, text/plain, */*
+            Accept-Encoding: gzip, deflate
+            Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+            Connection: keep-alive
+            Content-Length: '4'
+            Content-Type: application/json;charset=UTF-8
+            Cookie: Hm_lvt_a40372507a0e32054c266b4dce474b80=1684833484; sidebarStatus=1;
+                access-token=eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODUxNTc1ODEsInVzZXJEZXRhaWxzIjoie1wicm9sZXNcIjpbe1wiY29kZVwiOlwic3VwZXJhZG1pblwiLFwibmFtZVwiOlwi6LaF57qn566h55CG5ZGYXCIsXCJpZFwiOjF9XSxcIm9yZ0lkXCI6MSxcInBhc3N3b3JkXCI6XCIkMmEkMTAkTkVzck55QklQR0VMeDlEcElibS94LlZ3QU1PemhtWDRjT2ZPNGp6d1JKZjZYaXpZcnhqSTJcIixcImlkZW50aXR5XCI6MSxcIm5hbWVcIjpcIueuoeeQhuWRmFwiLFwiaWRcIjoxLFwic3RhdGVcIjoxLFwidXNlcm5hbWVcIjpcImFkbWluXCJ9In0.ahvKUIibsGNqqhNn3zX5kv67koo0orqauTKRlj13bWk;
+                Hm_lpvt_a40372507a0e32054c266b4dce474b80=1684997378
+            Host: erp2.hzb-it.com
+            Origin: http://erp2.hzb-it.com
+            Referer: http://erp2.hzb-it.com/?
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.42
+            access-token: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODUxNTc1ODEsInVzZXJEZXRhaWxzIjoie1wicm9sZXNcIjpbe1wiY29kZVwiOlwic3VwZXJhZG1pblwiLFwibmFtZVwiOlwi6LaF57qn566h55CG5ZGYXCIsXCJpZFwiOjF9XSxcIm9yZ0lkXCI6MSxcInBhc3N3b3JkXCI6XCIkMmEkMTAkTkVzck55QklQR0VMeDlEcElibS94LlZ3QU1PemhtWDRjT2ZPNGp6d1JKZjZYaXpZcnhqSTJcIixcImlkZW50aXR5XCI6MSxcIm5hbWVcIjpcIueuoeeQhuWRmFwiLFwiaWRcIjoxLFwic3RhdGVcIjoxLFwidXNlcm5hbWVcIjpcImFkbWluXCJ9In0.ahvKUIibsGNqqhNn3zX5kv67koo0orqauTKRlj13bWk
+        json:
+        - $test_data_id
+        method: POST
+        url: http://erp2.hzb-it.com/app/common/position/delete
+    validate:
+    -   eq:
+        - status_code
+        - 200
+    -   eq:
+        - headers.Content-Type
+        - application/json
+    -   eq:
+        - body.errCode
+        - 0
+    -   eq:
+        - body.data
+        - null
+    -   eq:
+        - body.msg
+        - 提交成功

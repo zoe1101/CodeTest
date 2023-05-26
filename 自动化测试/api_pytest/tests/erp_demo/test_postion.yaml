@@ -1,0 +1,21 @@
+config: # ²âÊÔÐÅÏ¢
+  env: erp_demo
+
+
+variable:
+  none : none
+tests:
+  test_position_list:
+    is_run: True
+    description: "ÖªºõµÇÂ¼"
+    host: http://erp2.hzb-it.com
+    method: post
+    route: /app/common/position/list
+    RequestData:
+      json:
+        name: pm
+        page: 1
+        pagesize: 30
+    Validate:
+      - eq: [status_code, 200]
+      - eq: [$.records[0].name, pm]

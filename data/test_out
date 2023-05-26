@@ -1,0 +1,50 @@
+
+    web_custom_request("/app/common/login",
+        "URL=http://erp2.hzb-it.com/app/common/login",
+        "Method=POST",
+        "Resource=0",
+        "Referer=http://erp2.hzb-it.com/",
+        "EncType=application/x-www-form-urlencoded",
+        "Params=",
+        "Body=username=admin&password=123",
+        LAST);
+
+    web_custom_request("/app/common/position/save",
+        "URL=http://erp2.hzb-it.com/app/common/position/save",
+        "Method=POST",
+        "Resource=0",
+        "Referer=http://erp2.hzb-it.com/",
+        "EncType=application/json;charset=UTF-8",
+        "Params=",
+        "Body={"name":"测试工程师"}",
+        LAST);
+
+    web_custom_request("/app/common/position/list",
+        "URL=http://erp2.hzb-it.com/app/common/position/list",
+        "Method=GET",
+        "Resource=0",
+        "Referer=http://erp2.hzb-it.com/?",
+        "EncType=",
+        "Params=page=1&pageSize=30&name=pm",
+        "Body=",
+        LAST);
+
+    web_custom_request("/app/common/position/save",
+        "URL=http://erp2.hzb-it.com/app/common/position/save",
+        "Method=POST",
+        "Resource=0",
+        "Referer=http://erp2.hzb-it.com/?",
+        "EncType=application/json;charset=UTF-8",
+        "Params=",
+        "Body={"name":"测试工程","id":72}",
+        LAST);
+
+    web_custom_request("/app/common/position/delete",
+        "URL=http://erp2.hzb-it.com/app/common/position/delete",
+        "Method=POST",
+        "Resource=0",
+        "Referer=http://erp2.hzb-it.com/?",
+        "EncType=application/json;charset=UTF-8",
+        "Params=",
+        "Body=[72]",
+        LAST);

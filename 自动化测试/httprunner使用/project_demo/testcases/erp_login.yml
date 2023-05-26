@@ -1,0 +1,44 @@
+config:
+    name: 系统登录
+    variables: {}
+    verify: false
+teststeps:
+-   name: /app/common/login
+    request:
+        cookies:
+            Hm_lpvt_a40372507a0e32054c266b4dce474b80: '1684833484'
+            Hm_lvt_a40372507a0e32054c266b4dce474b80: '1684833484'
+        data:
+            password: '123'
+            username: admin
+        headers:
+            Accept: application/json, text/plain, */*
+            Accept-Encoding: gzip, deflate
+            Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+            Connection: keep-alive
+            Content-Length: '27'
+            Content-Type: application/x-www-form-urlencoded
+            Cookie: Hm_lvt_a40372507a0e32054c266b4dce474b80=1684833484; Hm_lpvt_a40372507a0e32054c266b4dce474b80=1684833484
+            Host: erp2.hzb-it.com
+            Origin: http://erp2.hzb-it.com
+            Referer: http://erp2.hzb-it.com/
+            User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+                (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36 Edg/113.0.1774.42
+        method: POST
+        url: http://erp2.hzb-it.com/app/common/login
+    validate:
+    -   eq:
+        - status_code
+        - 200
+#    -   eq:
+#        - headers.Content-Type
+#        - application/json;charset=UTF-8
+    -   eq:
+        - body.msg
+        - 提交成功
+#    -   eq:
+#        - body.data
+#        - eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODUwMDYzOTAsInVzZXJEZXRhaWxzIjoie1wicm9sZXNcIjpbe1wiY29kZVwiOlwic3VwZXJhZG1pblwiLFwibmFtZVwiOlwi6LaF57qn566h55CG5ZGYXCIsXCJpZFwiOjF9XSxcIm9yZ0lkXCI6MSxcInBhc3N3b3JkXCI6XCIkMmEkMTAkTkVzck55QklQR0VMeDlEcElibS94LlZ3QU1PemhtWDRjT2ZPNGp6d1JKZjZYaXpZcnhqSTJcIixcImlkZW50aXR5XCI6MSxcIm5hbWVcIjpcIueuoeeQhuWRmFwiLFwiaWRcIjoxLFwic3RhdGVcIjoxLFwidXNlcm5hbWVcIjpcImFkbWluXCJ9In0.EcH7pKun3_-Qe1dX_zv3YN-YzuQIL6QFklG5EHptAKI
+    -   eq:
+        - body.errCode
+        - 0
